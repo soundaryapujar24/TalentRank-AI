@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>TalentRank ATS</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside>
+        <div class="logo" id="lgo">
+          <i></i>
+          <div>Talent<span>Rank</span></div>
+        </div>
+        <div class="role">
+          <button class="on" data-r="hr">HR</button
+          ><button data-r="cd">Candidate</button>
+        </div>
+        <nav>
+          <button data-r="hr" data-v="d">Dashboard</button>
+          <button data-r="hr" data-v="p">Recruitment Overview</button>
+          <button data-r="hr" data-v="an">Analytics</button>
+          <button data-r="hr" data-v="c">Ranked candidates</button>
+          <button data-r="hr" data-v="r">Resume storage</button>
+          <button data-r="hr" data-v="w">Walk-ins</button>
+          <button data-r="hr" data-v="j">Create job</button>
+          <button data-r="hr" data-v="s">Interview scheduler</button>
+          <button data-r="cd" data-v="a">Careers</button>
+          <button data-r="cd" data-v="wk">Walk-in</button>
+          <button data-r="cd" data-v="b">AI CV builder</button>
+          <button data-r="cd" data-v="u">Resume vault</button>
+          <button data-r="cd" data-v="o">Application outbox</button>
+          <button data-r="cd" data-v="m">My application</button>
+          <button data-r="cd" data-v="ol">Offer letters</button>
+        </nav>
+        <div class="side-foot">
+          <i class="dotg"></i>
+          <div><b>AI engine online</b><small>SBERT model ready</small></div>
+        </div>
+      </aside>
+      <main>
+        <div class="top">
+          <div id="crumb">HR workspace</div>
+          <div style="display: flex; gap: 10px; align-items: center">
+            <button
+              class="net"
+              id="net"
+              type="button"
+              title="Click to simulate offline mode (demo)"
+            ></button>
+            <div class="nf">
+              <button
+                class="ibtn"
+                id="bell"
+                type="button"
+                aria-expanded="false"
+              ></button>
+              <div class="np" id="np"></div>
+            </div>
+            <button class="tgl" type="button"></button>
+            <div class="who">
+              <span class="dotg"></span><span id="whol">HR Admin</span
+              ><i class="av" id="whoa">HR</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="off" id="off" hidden>
+          <b>You are offline.</b> Your CV, resumes and applications are saved on
+          this device and will sync when you are back online.
+        </div>
+        <section id="home" class="on">
+          <div class="lhero">
+            <div class="lt">
+              <div class="lg"><i></i>TalentRank</div>
+              <button class="tgl" type="button"></button>
+            </div>
+            <div class="lb">
+              <div class="lc">
+                <span class="pill">AI-powered ATS</span>
+                <h1>Hire smarter.<br />Apply faster.</h1>
+                <p>
+                  Candidates build a CV with AI or upload one. SBERT and keyword
+                  matching rank every resume, and interviews are scheduled
+                  without clashes.
+                </p>
+                <div class="ctas">
+                  <button class="btn big" data-go="hr">Enter as HR</button
+                  ><button class="btn big ghost" data-go="cd">
+                    Enter as Candidate
+                  </button>
+                </div>
+              </div>
+              <div class="mock">
+                <div class="mh">
+                  <i></i><i></i><i></i><span>Ranked candidates</span>
+                </div>
+                <div class="mr">
+                  <b>Ananya Rao</b>
+                  <div class="mb"><u style="width: 91%"></u></div>
+                  <em>91</em>
+                </div>
+                <div class="mr">
+                  <b>Rohit Nair</b>
+                  <div class="mb"><u style="width: 86%"></u></div>
+                  <em>86</em>
+                </div>
+                <div class="mr">
+                  <b>Meera Iyer</b>
+                  <div class="mb"><u style="width: 78%"></u></div>
+                  <em>78</em>
+                </div>
+                <div class="mr">
+                  <b>Karthik S</b>
+                  <div class="mb"><u style="width: 71%"></u></div>
+                  <em>71</em>
+                </div>
+                <div class="mt">
+                  <span>3 shortlisted</span><span>0 clashes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feats">
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="c"
+                style="--g: linear-gradient(135deg, #14b8a6, #3b82f6)"
+              ></i>
+              <h2>Smart ranking</h2>
+              <p>
+                SBERT meaning match plus keyword match, with a clear explanation
+                for every score.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="b"
+                style="--g: linear-gradient(135deg, #8b5cf6, #d946ef)"
+              ></i>
+              <h2>AI CV builder</h2>
+              <p>
+                Candidates answer a few questions, pick a template and get a
+                complete CV, saved automatically.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="s"
+                style="--g: linear-gradient(135deg, #f59e0b, #f97316)"
+              ></i>
+              <h2>No-clash scheduling</h2>
+              <p>
+                Only shortlisted candidates get interview slots, and nobody is
+                double-booked.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="wifi"
+                style="--g: linear-gradient(135deg, #3b82f6, #06b6d4)"
+              ></i>
+              <h2>Works offline</h2>
+              <p>
+                Candidates can build a CV and apply without internet. Everything
+                syncs when they are back online.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="w"
+                style="--g: linear-gradient(135deg, #22c55e, #14b8a6)"
+              ></i>
+              <h2>Walk-in intake</h2>
+              <p>
+                HR adds paper and walk-in resumes to the same screening as
+                online applications.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="an"
+                style="--g: linear-gradient(135deg, #ec4899, #8b5cf6)"
+              ></i>
+              <h2>Analytics and insights</h2>
+              <p>
+                Charts and AI insights show where candidates drop off and which
+                skills are missing.
+              </p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="b"
+                style="--g: linear-gradient(135deg, #f59e0b, #ec4899)"
+              ></i>
+              <h2>Career Copilot</h2>
+              <p>One prompt re-tailors any saved resume for a new role and shows the role fit before and after.</p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="u"
+                style="--g: linear-gradient(135deg, #3b82f6, #8b5cf6)"
+              ></i>
+              <h2>Resume vault</h2>
+              <p>Generated and uploaded resumes live in one place, ready to edit with AI and reuse.</p>
+            </div>
+            <div class="card">
+              <i
+                class="ic"
+                data-ic="check"
+                style="--g: linear-gradient(135deg, #22c55e, #14b8a6)"
+              ></i>
+              <h2>Truthful tailoring</h2>
+              <p>The AI only rewords what you really have. Missing skills become a learning roadmap, never fake keywords.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="d">
+          <div class="hero">
+            <h1>Hiring overview</h1>
+            <p class="sub">
+              Resumes are screened and ranked by AI the moment candidates apply.
+            </p>
+            <div class="fl">
+              <span>Score 91 · Fit</span><span>Shortlisted</span
+              ><span>Slot confirmed</span>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="card stat">
+              <i
+                class="ic"
+                data-ic="users"
+                style="--g: linear-gradient(135deg, #3b82f6, #6366f1)"
+              ></i
+              ><b>248</b><small>Applications</small
+              ><span class="up">Screened: 248</span>
+            </div>
+            <div class="card stat">
+              <i
+                class="ic"
+                data-ic="check"
+                style="--g: linear-gradient(135deg, #14b8a6, #22c55e)"
+              ></i
+              ><b>32</b><small>Shortlisted (75+)</small
+              ><span class="up">13% of applicants</span>
+            </div>
+            <div class="card stat">
+              <i
+                class="ic"
+                data-ic="s"
+                style="--g: linear-gradient(135deg, #8b5cf6, #d946ef)"
+              ></i
+              ><b>18</b><small>Interviews booked</small
+              ><span class="up">14 awaiting confirmation</span>
+            </div>
+            <div class="card stat">
+              <i
+                class="ic"
+                data-ic="shield"
+                style="--g: linear-gradient(135deg, #f59e0b, #f97316)"
+              ></i
+              ><b>0</b><small>Schedule conflicts</small
+              ><span class="up">Checked automatically</span>
+            </div>
+          </div>
+          <div class="card ins">
+            <h2>AI insights</h2>
+            <div>
+              <b>Docker is missing in 72% of applicants</b>Consider making it a
+              good-to-have skill for this role.
+            </div>
+            <div>
+              <b>14 interviews need confirmation</b>Candidates have been emailed
+              their assigned slots.
+            </div>
+          </div>
+          <div class="g2" style="grid-template-columns: 1fr">
+            <div class="card">
+              <h2>Hiring funnel</h2>
+              <div class="fun">
+                <i>Applied</i>
+                <div style="width: 100%">248</div>
+              </div>
+              <div class="fun">
+                <i>Screened</i>
+                <div style="width: 100%">248</div>
+              </div>
+              <div class="fun">
+                <i>Score 60+</i>
+                <div style="width: 46%">114</div>
+              </div>
+              <div class="fun">
+                <i>Shortlisted</i>
+                <div style="width: 13%; min-width: 44px">32</div>
+              </div>
+              <div class="fun">
+                <i>Interview booked</i>
+                <div style="width: 8%; min-width: 44px">18</div>
+              </div>
+            </div>
+          </div>
+          <div class="g3">
+            <div class="card">
+              <h2>Resume sources</h2>
+              <div
+                id="dn"
+                style="display: flex; align-items: center; gap: 16px"
+              ></div>
+              <div class="note">Both stores use the same screening.</div>
+            </div>
+            <div class="card">
+              <h2>How the screening works</h2>
+              <p style="margin: 0">
+                1. Resumes come from the AI CV builder (My Generated CVs) or an upload (My Uploaded Resumes). Text is parsed and personal details
+                are hidden.<br />2. SBERT compares meaning against the job
+                description.<br />3. Keyword match checks the must-have
+                skills.<br />4. Final score = 60% SBERT + 40% keywords.
+              </p>
+              <div class="note">
+                Ranking depends on skills and experience only.
+              </div>
+            </div>
+            <div class="card">
+              <h2>Recent activity</h2>
+              <ul class="act">
+                <li>
+                  Ananya Rao shortlisted<small
+                    >Score 91 · Round 1 assigned</small
+                  >
+                </li>
+                <li>
+                  Rohit Nair confirmed his slot<small
+                    >Thursday 10:00 AM · Priya S.</small
+                  >
+                </li>
+                <li>
+                  Karthik S moved to Under review<small
+                    >Score 71 · waiting for HR</small
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="p">
+          <h1>Recruitment Overview</h1>
+          <p class="sub">
+            See how many candidates are at each stage of hiring. Every candidate
+            moves from Under review through the Aptitude, GD and Technical
+            rounds to Selected and Offer released.
+          </p>
+          <div class="note" id="ks" style="margin: 0 0 14px"></div>
+          <div style="margin: 0 0 16px">
+            <label for="pf">Show stage</label>
+            <select id="pf">
+              <option>All stages</option>
+              <option>Under review</option>
+              <option>Aptitude Round</option>
+              <option>GD Round</option>
+              <option>Technical Round</option>
+              <option>Selected</option>
+              <option>Offer released</option>
+              <option>Not selected</option>
+            </select>
+          </div>
+          <div class="kb" id="kb"></div>
+        </section>
+
+        <section id="w">
+          <h1>Walk-ins</h1>
+          <p class="sub">
+            Create walk-in drives, see which candidates registered and record
+            each result. Candidates register themselves and upload their own
+            resumes.
+          </p>
+          <div class="g2">
+            <div class="card" id="wform"></div>
+            <div id="wlist"></div>
+          </div>
+        </section>
+
+        <section id="an">
+          <h1>Analytics</h1>
+          <p class="sub">
+            How applications, skills and resume sources look right now
+          </p>
+          <div class="g2">
+            <div class="card">
+              <h2>Applications in the last 14 days</h2>
+              <div id="c1"></div>
+            </div>
+            <div class="card">
+              <h2>Candidate status</h2>
+              <div id="c4"></div>
+            </div>
+          </div>
+          <div class="g2" style="grid-template-columns: 1fr">
+            <div class="card">
+              <h2>Skill coverage among applicants</h2>
+              <div id="c2"></div>
+              <div class="note">
+                Docker is the least common skill. Consider making it a
+                good-to-have.
+              </div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <h2>Shortlist rate by resume source</h2>
+              <div id="c3"></div>
+            </div>
+            <div class="card">
+              <h2>Average match score</h2>
+              <div id="c6"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="c">
+          <h1>Ranked candidates</h1>
+          <p class="sub">
+            Select a candidate to see the SBERT evidence behind the score
+          </p>
+          <label class="sw"
+            ><input type="checkbox" id="blind" /> Blind screening: hide
+            names</label
+          >
+          <div class="fb">
+            <input
+              type="text"
+              id="fq"
+              placeholder="Search by skill, for example Python"
+              aria-label="Search candidates"
+            /><select id="fs" aria-label="Filter by status">
+              <option>All statuses</option>
+              <option>Shortlisted</option>
+              <option>Selected</option>
+              <option>Offer released</option>
+              <option>Under review</option>
+              <option>Not selected</option></select
+            ><select id="fr" aria-label="Filter by source">
+              <option>All sources</option>
+              <option>AI-generated</option>
+              <option>Uploaded</option></select
+            ><span id="fc"></span>
+          </div>
+          <div class="g2">
+            <div class="card tw">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Candidate</th>
+                    <th>Score</th>
+                    <th>SBERT</th>
+                    <th>Keywords</th>
+                    <th>Source</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+              </table>
+            </div>
+            <div class="card" id="ex"></div>
+          </div>
+        </section>
+
+        <section id="j">
+          <h1>Create job</h1>
+          <p class="sub">
+            This description is what SBERT matches every resume against.
+          </p>
+          <div class="card" style="max-width: 660px">
+            <label>Job title</label
+            ><input type="text" value="Machine Learning Engineer" />
+            <label>Job description</label
+            ><textarea>
+Build NLP models for text classification. Deploy models as APIs. Work with SQL databases. Containerize applications.</textarea>
+            <label>Must-have skills</label><span class="chip ok">Python</span
+            ><span class="chip ok">NLP</span><span class="chip ok">SQL</span
+            ><span class="chip ok">FastAPI</span
+            ><span class="chip ok">Docker</span>
+            <label>Shortlist cut-off score</label
+            ><input type="text" value="75" />
+            <p style="margin: 16px 0 0">
+              <button class="btn" id="pub">Publish job</button>
+            </p>
+            <div class="toast" id="pt"></div>
+          </div>
+        </section>
+
+        <section id="s">
+          <h1>Interview scheduler</h1>
+          <p class="sub">
+            Each candidate goes through three separate rounds: Aptitude, Group
+            Discussion (GD) and Technical. A candidate becomes eligible for the
+            next round only after passing the previous one. Every round keeps its
+            own date, time, location, result and recruiter remarks.
+          </p>
+          <div id="rnds"></div>
+        </section>
+
+        <section id="a">
+          <div class="hero">
+            <h1>Join TalentRank Labs</h1>
+            <p class="sub">
+              Chat with our AI to build your resume, or upload your own. Then
+              apply in two minutes.
+            </p>
+            <div class="fl">
+              <span>CV built by AI</span><span>Instant screening</span
+              ><span>Fair ranking</span>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <h2>Open positions</h2>
+              <div class="job" data-j="Machine Learning Engineer">
+                <div>
+                  <b>Machine Learning Engineer</b><br /><small
+                    style="color: var(--mut)"
+                    >Bengaluru · Full time</small
+                  ><br /><span class="chip ok">Python</span
+                  ><span class="chip ok">NLP</span
+                  ><span class="chip ok">SQL</span>
+                </div>
+                <button class="btn" style="padding: 7px 16px">Apply</button>
+              </div>
+              <div class="job" data-j="Backend Developer">
+                <div>
+                  <b>Backend Developer</b><br /><small style="color: var(--mut)"
+                    >Remote · Full time</small
+                  ><br /><span class="chip ok">Python</span
+                  ><span class="chip ok">FastAPI</span
+                  ><span class="chip ok">SQL</span>
+                </div>
+                <button class="btn" style="padding: 7px 16px">Apply</button>
+              </div>
+              <div class="job" data-j="Data Analyst Intern">
+                <div>
+                  <b>Data Analyst Intern</b><br /><small
+                    style="color: var(--mut)"
+                    >Mysuru · 6 months</small
+                  ><br /><span class="chip ok">SQL</span
+                  ><span class="chip ok">Excel</span
+                  ><span class="chip ok">Power BI</span>
+                </div>
+                <button class="btn" style="padding: 7px 16px">Apply</button>
+              </div>
+            </div>
+            <div class="card">
+              <h2 id="ah">Apply: Machine Learning Engineer</h2>
+              <label for="fn">Full name</label
+              ><input type="text" id="fn" placeholder="Your name" />
+              <label for="fe">Email</label
+              ><input type="text" id="fe" placeholder="you@example.com" />
+              <label for="rs">Choose a resume</label
+              ><select id="rs" style="width: 100%"></select>
+              <label
+                class="drop"
+                style="font-weight: 500; margin: 10px 0 0; position: relative"
+                ><span id="fnm">Or upload a new resume (PDF or DOCX)</span
+                ><input
+                  type="file"
+                  id="rf"
+                  accept=".pdf,.docx"
+                  style="
+                    position: absolute;
+                    opacity: 0;
+                    width: 1px;
+                    height: 1px;
+                  "
+              /></label>
+              <p style="margin: 8px 0 0; font-size: 13px; color: var(--mut)">
+                No resume yet?
+                <a href="#" id="gob" style="color: var(--acc); font-weight: 700"
+                  >Create one with the AI CV builder</a
+                >
+              </p>
+              <p style="margin: 14px 0 0">
+                <button class="btn" id="ap">Submit application</button>
+              </p>
+              <div class="toast" id="at"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="r">
+          <h1>Resume storage</h1>
+          <p class="sub">
+            Generated CVs and uploaded resumes are kept in separate lists. Both go through the same screening. Only candidates upload resumes. Recruiters can view and download them.
+          </p>
+          <div class="g2">
+            <div class="card">
+              <h2 style="margin-top: 10px">AI-generated resumes</h2>
+              <span class="big" id="hp">120</span>
+              <small style="color: var(--mut)">created in the chatbot</small>
+              <div class="fi">
+                <b>Ananya_Rao_MLE_Resume</b
+                ><small>Machine Learning Engineer · Score 91</small>
+              </div>
+              <div class="fi">
+                <b>Karthik_S_BD_Resume</b
+                ><small>Backend Developer · Score 71</small>
+              </div>
+              <div id="hpl"></div>
+            </div>
+            <div class="card">
+              <h2 style="margin-top: 10px">Uploaded resumes</h2>
+              <span class="big" id="hs">128</span>
+              <small style="color: var(--mut)">uploaded as files</small>
+              <div class="fi">
+                <b>Rohit_Nair.pdf</b
+                ><small>Uploaded by the candidate · Score 86</small>
+              </div>
+              <div class="fi">
+                <b>Meera_Iyer.docx</b
+                ><small>Uploaded by the candidate · Score 78</small>
+              </div>
+              <div id="hsl"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h2>How a resume reaches the ranking</h2>
+            <div class="flow">
+              <span>Candidate</span><i>→</i><span>AI chatbot</span><i>→</i
+              ><span>My Generated CVs</span><i>or</i><span>Upload</span><i>→</i
+              ><span>My Uploaded Resumes</span><i>→</i
+              ><span>SBERT + keyword screening</span><i>→</i
+              ><span>Ranking</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="b">
+          <h1>AI CV builder</h1>
+          <p class="sub">
+            Answer a few questions, pick a template and get a complete CV. Later, change it for any new role with one prompt.
+          </p>
+          <div class="g2">
+            <div class="card chat">
+              <div class="ch">
+                <i class="bot-av">AI</i>
+                <div>
+                  <b>CV Assistant</b><small>Online · replies instantly</small>
+                </div>
+              </div>
+              <div class="cl" id="cl"></div>
+              <div class="chips" id="cc"></div>
+              <div class="cin">
+                <textarea id="ci" rows="1" placeholder="Type your answer or a change. Shift+Enter for a new line"></textarea><button class="btn" id="cs">Send</button>
+              </div>
+            </div>
+            <div class="card">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 10px;
+                  gap: 8px;
+                "
+              >
+                <h2 style="margin: 0">Live CV preview</h2>
+                <button
+                  class="btn"
+                  id="ed"
+                  style="padding: 6px 12px; display: none"
+                >
+                  Edit CV
+                </button>
+              </div>
+              <div class="mb" id="mb" style="display: none"></div>
+              <div class="tpls" id="tpls"></div>
+              <div class="paper" id="pp"></div>
+              <div id="pa" style="margin-top: 12px"></div>
+              <div id="fit"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="u">
+          <h1>Resume vault</h1>
+          <p class="sub">
+            Every CV you generate and every resume you upload is stored here.
+            Reuse any of them for a new role with one prompt.
+          </p>
+          <div class="card cop">
+            <h2>Career Copilot: one resume, every role</h2>
+            <p class="cpd">
+              Choose a resume and say what you want. The AI rewrites it for the
+              new role, shows your role fit before and after, and lists the
+              skills to learn. It never adds skills you do not have, and your
+              original stays safe.
+            </p>
+            <div class="cprow">
+              <select id="qr" aria-label="Choose a resume"></select>
+              <input type="text" id="qp" placeholder="e.g. Tailor this for a Data Analyst role" />
+              <button class="btn" id="qg">Apply with AI</button>
+            </div>
+            <div class="qc" id="qc">
+              <button type="button">Tailor this for a Data Analyst role</button>
+              <button type="button">Tailor this for a Backend Developer role</button>
+              <button type="button">How well do I fit a Machine Learning Engineer role?</button>
+              <button type="button">Add skill Docker</button>
+            </div>
+            <div class="toast" id="qm"></div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <h2>My Generated CVs</h2>
+              <div id="pl"></div>
+              <p style="margin: 12px 0 0">
+                <button class="btn" id="gb">Create with AI</button>
+              </p>
+            </div>
+            <div class="card">
+              <h2>My Uploaded Resumes</h2>
+              <div id="sl2"></div>
+              <label
+                class="btn"
+                style="
+                  display: inline-block;
+                  margin: 12px 0 0;
+                  position: relative;
+                  cursor: pointer;
+                "
+                >Upload resume<input
+                  type="file"
+                  id="ru"
+                  accept=".pdf,.docx"
+                  style="
+                    position: absolute;
+                    opacity: 0;
+                    width: 1px;
+                    height: 1px;
+                  "
+              /></label>
+              <div class="toast" id="unm"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="o">
+          <h1>Application outbox</h1>
+          <p class="sub">
+            Submitted applications, and offline drafts saved on this device that are not submitted yet
+          </p>
+          <div class="card"><div id="ob"></div></div>
+        </section>
+
+        <section id="m">
+          <h1>My application</h1>
+          <p class="sub">Machine Learning Engineer</p>
+          <div class="note" style="margin: 0 0 16px">
+            Demo only. Preview what each applicant sees:
+            <select id="pv">
+              <option value="0">Ananya · score 91</option>
+              <option value="3">Karthik · score 71</option>
+              <option value="5">Vikram · score 52</option>
+            </select>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <h2>Status</h2>
+              <ul class="tl" id="tl"></ul>
+            </div>
+            <div class="card" id="side"></div>
+          </div>
+        </section>
+        <section id="wk">
+          <h1>Walk-in opportunities</h1>
+          <p class="sub">
+            Browse walk-in drives, register for the ones you are eligible for and
+            track your registration.
+          </p>
+          <div class="g2">
+            <div id="wkl"></div>
+            <div>
+              <div class="card" id="wreg"></div>
+              <div class="card" style="margin-top: 16px">
+                <h2>My registrations</h2>
+                <div id="wmy"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="ol">
+          <h1>Offer letters</h1>
+          <p class="sub">
+            When HR releases an offer letter it appears here. You can view and
+            download it.
+          </p>
+          <div class="card" id="olc"></div>
+        </section>
+      </main>
+    </div>
+    <script src="js/icons.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ranking.js"></script>
+    <script src="js/rounds.js"></script>
+    <script src="js/offers.js"></script>
+    <script src="js/walkins.js"></script>
+    
+    <script src="js/candidate.js"></script>
+    <script src="js/cv-builder.js"></script>
+    <script src="js/copilot.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/offline.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
